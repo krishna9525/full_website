@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <title>Sign In</title>
+</head>
+<body>
+    <form>
+        <input type="email" id="email">
+        <input type="password" id="password">
+        <input type="submit" value="signIn">
+    </form>
+</body>
+</html>
+<script>
+    document.querySelector("form").addEventListener("submit",Marketing)
+let signIpArr=JSON.parse(localStorage.getItem("SignUp"))||[]
+function Marketing(event){
+    event.preventDefault();
+
+    let Arr={
+        Email:document.querySelector("#email").value,
+        Password:document.querySelector("#password").value,
+
+    }
+    if(signIpArr.length===0){
+        alert("No User til Now")
+        return
+    }   
+    let flag=true
+    signIpArr.forEach(function(elem){
+        if(elem.Email===Arr.Email &&elem.Password ===Arr.Password ){
+           flag=false
+            localStorage.setItem("SignIp",JSON.stringify(elem))
+            alert("Successful Log In")
+            window.location.href="index.html";
+        }    })
+if(flag===true){
+    alert("User Doesnot Exist")
+}
+}
+
+
+</script>
